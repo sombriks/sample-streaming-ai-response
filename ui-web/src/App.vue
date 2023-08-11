@@ -16,6 +16,7 @@ import StreamResult from "./components/stream-result.vue";
   }
   .item {
     margin: 2em;
+    max-width: 30vw;
   }
 
 </style>

@@ -6,6 +6,7 @@ const results = ref("No results yet")
 const duration = ref("")
 const doQuery = async () => {
   results.value = "Loading..."
+  duration.value = ""
   try {
     const t1 = new Date()
     const result = await fetch(`${import.meta.env.VITE_API_URL}/prompt?q=${aiPrompt.value}`)
