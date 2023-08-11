@@ -22,6 +22,8 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
+	implementation("com.theokanning.openai-gpt3-java:service:0.15.0")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
