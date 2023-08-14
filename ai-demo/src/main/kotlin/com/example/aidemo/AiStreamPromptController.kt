@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter
 import java.time.LocalDateTime
+import java.util.UUID
 import kotlin.concurrent.thread
 
 @RestController
@@ -47,6 +48,13 @@ class AiStreamPromptController(
                             .reconnectTime(reconnect * 1000)
                     )
                 }
+            emitter.send(
+                SseEmitter
+                    .event()
+                    .id("${UUID.randomUUID()}")
+                    .name("done")
+                    .data("true")
+            )
             emitter.complete()
         }
         return emitter

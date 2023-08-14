@@ -25,7 +25,9 @@ const doQuery = async () => {
     const result = {id: nanoid(), data, delta: ` ${new Date().getTime() - d1.getTime()} ms`}
     results.value = [...results.value, result]
   })
-  setTimeout(evtSource.close, 30000) // TODO
+  // backend should inform that the prompt is over
+  evtSource.addEventListener("done", () => evtSource.close())
+  // setTimeout(evtSource.close, 30000) // TODO
 }
 
 </script>
