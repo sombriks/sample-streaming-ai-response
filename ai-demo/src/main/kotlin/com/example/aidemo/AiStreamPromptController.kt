@@ -20,7 +20,8 @@ import kotlin.concurrent.thread
 class AiStreamPromptController(
     private val aiService: OpenAiService,
     @Value("\${sse.timeout.seconds}") private val timeout: Long,
-    @Value("\${sse.reconnect.seconds}") private val reconnect: Long
+    @Value("\${sse.reconnect.seconds}") private val reconnect: Long,
+    @Value("\${openai.model}") private val model: String
 ) {
 
     private val logger by lazy { LoggerFactory.getLogger(AiStreamPromptController::class.java) }
@@ -30,7 +31,7 @@ class AiStreamPromptController(
         val emitter = SseEmitter(timeout * 1000)
         thread {
             val completionRequest = ChatCompletionRequest.builder()
-                .model("gpt-3.5-turbo")
+                .model(model)
                 .messages(listOf(ChatMessage("user", q)))
                 .stream(true)
                 .build()
